@@ -1,4 +1,4 @@
-"""appconfig URL Configuration
+"""slagningar_proj URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from slagningar import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^bootstrap/$', views.bootstrap,name="bootstrap"),
+    url(r'^signatur/(?P<signatur>[a-z]{5})/$', views.signatur,name="signatur"),
+    url(r'^$', views.home, name='home'),
+#     url(r'^(?P<signatur>[0-9]+)/$', views.signatur, name='detail'),
 ]

@@ -1,0 +1,26 @@
+<h1>Slagningar per signatur</h1>
+
+
+<ul>
+{% for avdelning, antal in medcnt.items %}
+    <li>{{ avdelning }}: {{ antal }}</li>
+{% endfor %}
+</ul>
+
+<table id="kryss">
+	<tr><th><th><th>Scouter<th>Föräldrar<th>Ledare
+	<tr><th>            <td><input type="checkbox" id="XX"><td><input type="checkbox" id="XS"><td><input type="checkbox" id="XF"><td><input type="checkbox" id="XL">
+	<tr><th>Spårare     <td><input type="checkbox" id="SX"><td><input type="checkbox" id="SS"><td><input type="checkbox" id="SF"><td><input type="checkbox" id="SL">
+	<tr><th>Upptäckare  <td><input type="checkbox" id="UX"><td><input type="checkbox" id="US"><td><input type="checkbox" id="UF"><td><input type="checkbox" id="UL">
+	<tr><th>Äventyrare  <td><input type="checkbox" id="AX"><td><input type="checkbox" id="AS"><td><input type="checkbox" id="AF"><td><input type="checkbox" id="AL">
+	<tr><th>Utmanare    <td><input type="checkbox" id="MX"><td><input type="checkbox" id="MS"><td><input type="checkbox" id="MF"><td><input type="checkbox" id="ML">
+	<tr><th>Rover/Övriga<td>                               <td><input type="checkbox" id="RS">	
+	<tr><th>
+</table>
+
+<button id="get_e-post">Kopiera 0 e-postadresser för 0 medlemmar</button>
+
+<p>
+<span id="adresser"> </span>
+  
+<script async="" src="/static/main.dart.js"></script>

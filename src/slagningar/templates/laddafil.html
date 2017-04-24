@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Boostrap</title>	
+	</head>
+
+	<body>
+		<!-- Upload form. Note enctype attribute! -->
+		<form action="{% url 'bootstrap' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>{{ form.non_field_errors }}</p>
+			<p>{{ form.bootfile.label_tag }} {{ form.bootfile.help_text }}</p>
+			<p>
+				{{ form.bootfile.errors }}
+				{{ form.bootfile }}
+			</p>
+			<p><input type="submit" value="Ladda upp" /></p>
+		</form>
+		
+	</body>
+
+</html> 
