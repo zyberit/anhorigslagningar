@@ -12,6 +12,24 @@ from .models import Case, Slagningar
 
 # Create your views here.
 
+def test(request):
+    cl = Case.objects.all()
+    q = [c.boss for c in cl]
+    ql = sorted(list(set(q)))
+    for sig in ql:
+        cl = Case.objects.filter(boss=sig).order_by('signatur')
+        print (sig+":"+str(len(cl)))
+    return redirect('/admin')
+
+def test2(request):
+    cl = Case.objects.all()
+    q = [c.signatur for c in cl]
+    ql = sorted(list(set(q)))
+    for sig in ql:
+        cl = Case.objects.filter(signatur=sig).order_by('date')
+        print (sig+":"+str(len(cl)))
+    return redirect('/admin')
+
 def bootstrap(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -25,8 +43,8 @@ def bootstrap(request):
 
 
 def signatur(request,signatur):
-    case_list = Case.objects.order_by('-pub_date')[:5]
-    context = {'latest_question_list': latest_question_list}
+    case_list = Case.objects.filter(signatur=signatur).order_by('date')
+    context = {'signatur':signatur,'case_list': case_list}
     return render(request, 'signatur.html', context)
 
 def login(request):

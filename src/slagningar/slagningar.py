@@ -7,10 +7,11 @@ Created on 23 apr. 2017
 import io, csv
 from .models import Case, Slagningar
 from datetime import datetime
+# from django.utils import timezone
 
 def loadfile(f):
-#     Slagningar.objects.all().delete()
-#     Case.objects.all().delete()
+    Slagningar.objects.all().delete()
+    Case.objects.all().delete()
     
     x = io.StringIO(f.read().decode("utf-8"))
 #     a = [{k: v for k, v in row.items()} for row in csv.DictReader(x, skipinitialspace=True)]
@@ -43,7 +44,7 @@ def loadfile(f):
         newones = Slagningar.objects.filter(case=newcases).order_by('signatur','timestamp')
         acase = None
         for n in newones:
-            if acase == None or (acase.signatur != n.signatur and acase.objekt != n.objekt):
+            if acase == None or acase.signatur != n.signatur or acase.objekt != n.objekt or acase.date != n.timestamp.date():
                 acase = Case()
                 acase.date = n.timestamp.date()
                 acase.signatur = n.signatur
@@ -51,59 +52,9 @@ def loadfile(f):
                 acase.boss = n.boss
                 acase.action = -1
                 acase.save()
+#                 print (acase)
             n.case = acase
             n.save()
         newcases.delete()
             
-
-
-
-def loadfileX(f):
-#     Slagningar.objects.all().delete()
-#     Case.objects.all().delete()
-    
-    x = io.StringIO(f.read().decode("utf-8"))
-#     a = [{k: v for k, v in row.items()}
-#          for row in csv.DictReader(x, skipinitialspace=True)]
-    newcase = Case()
-    newcase.signatur = "NEW!!"
-    newcase.save()
-
-    reader = csv.DictReader(x)
-    for row in reader:
-        slagning = Slagningar()
-        slagning.timestamp = datetime.strptime(row["Tidpunkt"], "%b %d %Y %H:%M:%S")  #Mar 07 2017 15:40:23
-        slagning.system = row["System"]
-        slagning.signatur = row["Signatur"]
-        slagning.objekt = row["Objekt"]
-        slagning.relation = row["Relation"]
-        slagning.info1 = row["Info 1"]
-        slagning.info2 = row["Info 2"]
-        slagning.info3 = row["Info 3"]
-        slagning.workplace = row["AnstÃ¤lldes arbetsort"]
-        slagning.office = row["Af-kontor"]
-        slagning.boss = row["NÃ¤rmsta chef"]
-        slagning.mo = row["AnstÃ¤lldes MO/Avd"]
-        slagning.moboss = row["MO/Avd-chef"]
-        slagning.case = newcase
-        slagning.save()
-    
-    newones = Slagningar.objects.filter(case=newcase).order_by('signatur','timestamp')
-    newcase = None
-    for n in newones:
-        if newcase == None or (newcase.signatur != n.signatur and newcase.objekt != n.objekt):
-            newcase = Case()
-            newcase.date = n.timestamp.date()
-            newcase.signatur = n.signatur
-            newcase.objekt = n.objekt
-            newcase.boss = n.boss
-            newcase.action = -1
-            newcase.save()
-        n.case = newcase
-        n.save()
-            
-    
-    
-    
-    
     

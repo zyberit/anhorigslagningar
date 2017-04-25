@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 
 # Create your models here.
@@ -24,7 +26,7 @@ class Slagningar(models.Model):
     timestamp = models.DateTimeField()
     system = models.CharField("System",max_length=10)
     signatur = models.CharField("Signatur",max_length=5)
-    action = models.CharField("Signatur",max_length=10)
+    action = models.CharField("Händelse",max_length=10)
     objekt = models.CharField("Objekt",max_length=12)
     relation = models.CharField("Relation",max_length=30)
     info1 = models.CharField("Info 1",max_length=30)
