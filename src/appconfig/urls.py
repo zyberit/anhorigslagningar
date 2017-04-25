@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^bootstrap/$', views.bootstrap,name="bootstrap"),
     url(r'^test/$', views.test,name="test"),
     url(r'^signatur/(?P<signatur>[a-z]{5})/$', views.signatur,name="signatur"),
+    url(r'^fall/(?P<case_id>[0-9]+)/$', views.case,name="fall"),
     url(r'^$', views.home, name='home'),
 #     url(r'^(?P<signatur>[0-9]+)/$', views.signatur, name='detail'),
 ]

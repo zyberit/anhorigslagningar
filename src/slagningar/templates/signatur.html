@@ -1,13 +1,13 @@
 <h1>Slagningar per signatur</h1>
 
-<h2>{{ signatur }}</h2>
+<h2>Signatur: {{ signatur }}</h2>
 
 {% if case_list %}
     <ul>
     {% for case in case_list %}
-        <li><a href="/case/{{ case.id }}/">{{ case.date }}</a></li>
+        <li><a href="/fall/{{ case.id }}/">{{ case.date }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No case!</p>
+    <p>Inga slagningar!</p>
 {% endif %}

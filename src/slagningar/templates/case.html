@@ -1,0 +1,11 @@
+<h1>Slagningar per tillfälle</h1>
+
+<h2>Signatur: {{ case.signatur }}</h2>
+<h2>Datum: {{ case.date }}</h2>
+
+<table id="slagningar">
+	<tr><th>Tidpunkt<th>System<th>Händelse<th>Objekt<th>Relation
+{% for slagning in slag_list %}
+	<tr><th>{{ slagning.timestamp }}<td>{{ slagning.system }}<td>{{ slagning.action }}<td>{{ slagning.objekt }}<td>{{ slagning.relation }}
+{% endfor %}
+</table>
