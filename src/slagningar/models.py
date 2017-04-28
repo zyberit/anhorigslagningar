@@ -47,3 +47,17 @@ class Slagningar(models.Model):
     def __str__(self):
         return self.timestamp.strftime("%Y-%m-%d %H:%M:%S")+":"+self.signatur+":"+self.objekt
 
+
+class orgunit(models.Model):
+    unitid = models.CharField("UnitID",primary_key=True,max_length=10)
+    name = models.CharField("Name",max_length=30)
+
+class employee(models.Model):
+    signatur = models.CharField("UnitID",primary_key=True,max_length=5)
+    name = models.CharField("Name",max_length=30)
+    name = models.CharField("Name",max_length=30)
+    name = models.CharField("Name",max_length=30)
+    name = models.CharField("Name",max_length=30)
+    name = models.CharField("Name",max_length=30)
+    
+    
