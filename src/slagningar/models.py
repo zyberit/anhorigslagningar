@@ -48,16 +48,23 @@ class Slagningar(models.Model):
         return self.timestamp.strftime("%Y-%m-%d %H:%M:%S")+":"+self.signatur+":"+self.objekt
 
 
-class orgunit(models.Model):
-    unitid = models.CharField("UnitID",primary_key=True,max_length=10)
-    name = models.CharField("Name",max_length=30)
+class Orgunit(models.Model):
+    unitid = models.CharField("UnitID",primary_key=True,max_length=12)
+    name = models.CharField("Namn",max_length=30)
+#     manager = models.CharField("Chef",max_length=5, default="xxxxx")
+    manager = models.ForeignKey('Employee', default=None)
+    active = models.BooleanField("Aktiv",default=False)
 
-class employee(models.Model):
+class Employee(models.Model):
     signatur = models.CharField("UnitID",primary_key=True,max_length=5)
-    name = models.CharField("Name",max_length=30)
-    name = models.CharField("Name",max_length=30)
-    name = models.CharField("Name",max_length=30)
-    name = models.CharField("Name",max_length=30)
-    name = models.CharField("Name",max_length=30)
-    
+    persnunmber = models.CharField("Personnummer",max_length=12)
+    email = models.CharField("E-post",max_length=40)
+    givenname = models.CharField("Förnamn",max_length=30)
+    surname = models.CharField("Efternamn",max_length=30)
+    phonenumber = models.CharField("Telefonnummer",max_length=10)
+    mobilenumber = models.CharField("Mobilnummer",max_length=10)
+    employed_at = models.ForeignKey(Orgunit)
+
+
+
     
